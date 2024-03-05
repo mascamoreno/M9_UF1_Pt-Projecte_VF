@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de Viajes</title>
+    <title>Curiosidades</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <header>
-        <h1>Blog de Viajes</h1>
+        <h1>Curiosidades</h1>
         <nav>
             <ul>
                 <li><a href="/">Inicio</a></li>
@@ -56,7 +56,7 @@
     <section id="contacto">
         <h2>Contacto</h2>
         <p>¿Tienes alguna pregunta o comentario? ¡Contáctanos!</p>
-        <form action="/contacto" method="post"> <!-- Modificado: action="/contacto" y method="post" -->
+        <form action="/contacto" method="post"> 
             <label for="nombre">Nombre:</label><br>
             <input type="text" id="nombre" name="nombre"><br>
             <label for="email">Correo Electrónico:</label><br>
@@ -69,7 +69,7 @@
     
 
     <footer>
-        <p>&copy; 2024 Blog de Viajes. Todos los derechos reservados.</p>
+        <p>© 2024 Viajes Ibáñez. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>

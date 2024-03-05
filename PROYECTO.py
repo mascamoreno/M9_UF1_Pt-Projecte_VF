@@ -4,7 +4,7 @@ import mysql.connector
 app = Flask(__name__)
 app.secret_key = 'se_la_saben_todos'
 
-# Configuración de la base de datos
+
 db = mysql.connector.connect(
     host="localhost",
     user="Jose Manuel",
@@ -13,7 +13,7 @@ db = mysql.connector.connect(
 )
 cursor = db.cursor()
 
-# Rutas de la aplicación
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -57,21 +57,31 @@ def logout():
 def public():
     return render_template('dashboard.html')
 
-# Ruta para el formulario de registro
+
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
     if request.method == 'POST':
         email = request.form['email']
         contraseña = request.form['contraseña']
         
-        # Insertar el nuevo usuario en la base de datos
-        cursor.execute("INSERT INTO login (email, contraseña) VALUES (%s, %s)", (email, contraseña))
-        db.commit()
+        # Consultar si el correo electrónico ya está registrado
+        cursor.execute("SELECT * FROM login WHERE email = %s", (email,))
+        existing_user = cursor.fetchone()
         
-        return redirect(url_for('registro_exitoso'))
+        if existing_user:
+            return "El correo electrónico ya está registrado."
+        else:
+            try:
+                # Registrar nuevo usuario
+                cursor.execute("INSERT INTO login (email, contraseña) VALUES (%s, %s)", (email, contraseña))
+                db.commit()
+                return redirect(url_for('registro_exitoso'))
+            except mysql.connector.Error as e:
+                print(f"Error al registrar usuario: {e}")
+                return "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde."
     return render_template('registro.html')
 
-# Ruta para la página de registro exitoso
+
 @app.route('/registro_exitoso')
 def registro_exitoso():
     return '¡Registro exitoso!'
@@ -91,7 +101,7 @@ def contacto():
         email = request.form['email']
         mensaje = request.form['mensaje']
         
-        # Insertar el mensaje en la base de datos
+        
         cursor.execute("INSERT INTO sugerencias (nombre, email, comentario) VALUES (%s, %s, %s)", (nombre, email, mensaje))
         db.commit()
         

@@ -1,4 +1,4 @@
-/* Estilos para el cuerpo de la página */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f9f9f9;
@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-/* Estilos para el encabezado h1 */
+
 h1 {
     color: #333;
     text-align: center;
@@ -14,7 +14,7 @@ h1 {
     font-size: 2.5rem;
 }
 
-/* Estilos para los formularios */
+
 form {
     max-width: 400px;
     margin: 50px auto;
@@ -24,14 +24,14 @@ form {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para las etiquetas de los campos del formulario */
+
 label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-/* Estilos para los campos de entrada del formulario */
+
 input[type="text"],
 input[type="email"],
 input[type="submit"] {
@@ -43,7 +43,7 @@ input[type="submit"] {
     transition: border-color 0.3s ease;
 }
 
-/* Estilos para el botón de enviar del formulario */
+
 input[type="submit"] {
     width: 100%;
     background-color: #007bff;
@@ -55,25 +55,25 @@ input[type="submit"] {
     transition: background-color 0.3s ease;
 }
 
-/* Estilos para el enlace del formulario */
+
 a {
     color: #007bff;
     text-decoration: none;
 }
 
-/* Estilos para el enlace del formulario cuando se pasa el ratón */
+
 a:hover {
     text-decoration: underline;
 }
 
-/* Efecto hover para los campos de entrada y el botón */
+
 input[type="text"]:hover,
 input[type="email"]:hover,
 input[type="submit"]:hover {
     border-color: #999;
 }
 
-/* Efecto hover para el botón de enviar */
+
 input[type="submit"]:hover {
     background-color: #0056b3;
 }
