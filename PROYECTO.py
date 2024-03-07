@@ -29,8 +29,9 @@ def login():
             session['username'] = user[1]
             return redirect(url_for('privado'))
         else:
-            return render_template('login.html', message='Usuario o contraseña incorrectos')
-    return render_template('login.html')
+            return render_template('login.html', error='Usuario o contraseña incorrectos')
+    return render_template('login.html', error=None)  
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -60,26 +61,26 @@ def public():
 
 @app.route('/registro', methods=['GET', 'POST'])
 def registro():
+    error = None  # Variable para almacenar el mensaje de error
     if request.method == 'POST':
         email = request.form['email']
         contraseña = request.form['contraseña']
         
-        # Consultar si el correo electrónico ya está registrado
         cursor.execute("SELECT * FROM login WHERE email = %s", (email,))
         existing_user = cursor.fetchone()
         
         if existing_user:
-            return "El correo electrónico ya está registrado."
+            error = "El correo electrónico ya está registrado."
         else:
             try:
-                # Registrar nuevo usuario
                 cursor.execute("INSERT INTO login (email, contraseña) VALUES (%s, %s)", (email, contraseña))
                 db.commit()
                 return redirect(url_for('registro_exitoso'))
             except mysql.connector.Error as e:
                 print(f"Error al registrar usuario: {e}")
-                return "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde."
-    return render_template('registro.html')
+                error = "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde."
+    return render_template('registro.html', error=error)  # Pasamos la variable error a la plantilla
+
 
 
 @app.route('/registro_exitoso')

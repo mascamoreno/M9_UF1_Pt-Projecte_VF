@@ -8,12 +8,17 @@
 </head>
 <body>
     <h1>Registro de Usuario</h1>
+   
     <form method="post" action="/registro">
         <label for="email">Email:</label><br>
         <input type="email" id="email" name="email" required><br>
         <label for="contraseña">Contraseña:</label><br>
-        <input type="password" id="contraseña" name="contraseña" required><br>
+        <input type="password" id="contraseña" name="contraseña" required><br><p></p>
         <input type="submit" value="Registrar">
+        {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
     </form>
 </body>
 </html>
+
